@@ -5,7 +5,7 @@ An example of pipelining in Clojure using core.async.
 ## Usage
 
 ```clojure
-(defn demo []                                                                                                                                
+(defn demo []
   (let [head-ch (pipeline)]
     (doseq [k (range 10)]
       (go (put! head-ch k)))))
