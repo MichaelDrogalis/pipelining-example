@@ -1,5 +1,5 @@
 (ns pipelining-example.core
-  (:require [clojure.core.async :refer [chan go >! <!]]))
+  (:require [clojure.core.async :refer [chan go put! <!]]))
 
 (defn a [x]
   (println "[A]:" x)
@@ -39,13 +39,15 @@
         m-ch (chan bound)
         n-ch (chan bound)
         o-ch (chan bound)]
-    (go (while true (>! n-ch (m (<! m-ch)))))
-    (go (while true (>! o-ch (n (<! n-ch)))))
+    (go (while true (put! n-ch (m (<! m-ch)))))
+    (go (while true (put! o-ch (n (<! n-ch)))))
     (go (while true (o (<! o-ch))))
     m-ch))
 
-(def head-ch (pipeline))
+(defn demo []
+  (let [head-ch (pipeline)]
+    (doseq [k (range 10)]
+      (go (put! head-ch k)))))
 
-(doseq [k (range 10)]
-  (go (>! head-ch k)))
+;;; (demo)
 
