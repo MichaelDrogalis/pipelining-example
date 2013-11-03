@@ -15,37 +15,37 @@ An example of pipelining in Clojure using core.async.
 
 Produces:
 
-```text
-[A]: 0                                                                                                                                       
-[A]: 1
-[B]: 0
-[A]: 2
-[B]: 1
-[C]: 0
-[A]: 3
-[A]: 4
-[B]: 2
-[A]: 5
-[A]: 6
-[B]: 3
-[C]: 1
-[A]: 7
-[A]: 8
-[B]: 4
-[A]: 9
-[C]: 2
-[B]: 5
-[B]: 6
-[C]: 3
-[B]: 7
-[B]: 8
-[C]: 4
-[B]: 9
-[C]: 5
-[C]: 6
-[C]: 7
-[C]: 8
-[C]: 9
+```
+A: 0
+A: 1
+B: 0
+A: 2
+A: 3
+B: 1
+C: 0
+A: 4
+B: 2
+A: 5
+A: 6
+B: 3
+C: 1
+A: 7
+A: 8
+B: 4
+A: 9
+C: 2
+B: 5
+B: 6
+C: 3
+B: 7
+B: 8
+C: 4
+B: 9
+C: 5
+C: 6
+C: 7
+C: 8
+C: 9
 ```
 
 ## License
