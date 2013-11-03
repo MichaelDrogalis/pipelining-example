@@ -2,33 +2,34 @@
   (:require [clojure.core.async :refer [chan go put! <!]]))
 
 (defn a [x]
-  (println "[A]:" x)
+  (println "A:" x)
   x)
 
 (defn b [x]
-  (println "[B]:" x)
+  (println "B:" x)
   x)
 
 (defn c [x]
-  (println "[C]:" x)
+  (println "C:" x)
   x)
 
 ;;; ((comp c b a) 42)
 
+;;; Avoid overlapping prints
 (def printer (agent nil))
 
 (defn m [x]
-  (send printer (fn [_] (println "[A]:" x)))
+  (send printer (fn [_] (println "A:" x)))
   (Thread/sleep 500)
   x)
 
 (defn n [x]
-  (send printer (fn [_] (println "[B]:" x)))
+  (send printer (fn [_] (println "B:" x)))
   (Thread/sleep 1000)
   x)
 
 (defn o [x]
-  (send printer (fn [_] (println "[C]:" x)))
+  (send printer (fn [_] (println "C:" x)))
   (Thread/sleep 2000)
   x)
 
